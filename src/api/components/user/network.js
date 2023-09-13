@@ -1,13 +1,15 @@
 const express = require('express');
 const response = require('../../../network/response');
+const controller = require('./controller');
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
   try {
-    response.success(req, res, 'Todo correcto');
+    const users = controller.list();
+    response.success(req, res, users);
   } catch (error) {
-    response.error(req, res, 'Se presentó un problema');
+    response.error(req, res);
   }
 });
 
