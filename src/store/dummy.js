@@ -5,27 +5,27 @@ const db = {
   ],
 };
 
-function list(table) {
+async function list(table) {
   return db[table];
 }
 
-function get(table, id) {
-  const col = list(table);
-  return col.find((item) => item.id === id) || null;
+async function get(table, id) {
+  const rows = await list(table);
+  return rows.find((item) => item.id === parseInt(id)) || null;
 }
 
-function upsert(table, data) {
+async function add(table, data) {
   const col = list(table);
   db[col].push(data);
 }
 
-function remove(table, id) {
+async function remove(table, id) {
   return true;
 }
 
 module.exports = {
   list,
   get,
-  upsert,
+  add,
   remove,
 };
