@@ -4,12 +4,14 @@ const successResponse = (
   res: Response,
   req: Request,
   status: number = 200,
-  message: string = 'Success'
+  message?: string,
+  data?: any
 ) => {
   res.status(status).send({
     error: false,
     status,
-    message,
+    message: message || 'Success',
+    data: data || null,
   });
 };
 
@@ -17,12 +19,13 @@ const errorResponse = (
   res: Response,
   req: Request,
   status: number = 500,
-  message: string = 'Internal Server Error'
+  message?: string
 ) => {
   res.status(status).send({
     error: true,
     status,
-    message,
+    message: message || 'Internal server error',
+    data: null,
   });
 };
 

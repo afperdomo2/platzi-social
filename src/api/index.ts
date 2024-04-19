@@ -1,12 +1,12 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import config from '../config/config';
 
-import usersRoutes from './components/users/network';
+import usersNetwork from './components/users/users.network';
 
 const app = express();
 
 // Router
-app.use('/api/users', usersRoutes);
+app.use('/api/users', usersNetwork);
 
 app.listen(config.port, () => {
   console.info('🚀Server running at PORT: ', config.port);
