@@ -3,7 +3,23 @@ import usersController from './users.controller';
 
 const router = express.Router();
 
-router.route('/').get(usersController.findAll).post(usersController.create);
+/**
+ * @swagger
+ * /users:
+ *  get:
+ *   sumary: Retorna todos los usuarios
+ *   responses:
+ *    200:
+ *     description: La lista de usuarios
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: array
+ *        items:
+ */
+router.get('/', usersController.findAll);
+
+router.post('/', usersController.create);
 
 router
   .route('/:id')
